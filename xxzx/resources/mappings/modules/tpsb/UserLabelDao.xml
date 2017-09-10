@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxzx.jeesite.modules.tpsb.dao.UserLabelDao">
+	
+	
+	<insert id="insert" parameterType="UserLabel">
+		insert 
+			into 
+		TPSB_USER_LABEL(
+		  USERID,
+		  PICID,
+		  LABEL,
+		  LABELANALYZER,
+		  LABELERRORNUM,
+		  CREATE_BY,
+		  CREATE_DATE,
+		  UPDATE_BY,
+		  UPDATE_DATE,
+		  REMARKS,
+		  DEL_FLAG
+		)
+		
+		 values(	
+			#{createBy.id},
+			#{picId},
+			#{label},
+			#{labelAnalyzer},
+			#{labelErrorNum},
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate}, 
+			#{remarks}, 
+			#{delFlag}
+		)
+	</insert>
+	
+	
+	
+	<select id="checkLabelsNum" parameterType="string" resultType="int">
+	
+	select 
+    count(*) 
+	 from (
+	 select userid
+	    from tpsb_user_label T 
+	 where T.PICID = #{picId} and T.LABELERRORNUM in (0,1) and T.DEL_FLAG = 0
+	    group by T.USERID
+	)
+		<!-- select count(*) from tpsb_user_label t where T.PICID = #{picId} -->
+	</select>
+	
+	
+	<select id="findLabelsWordByPicId" resultType="string">
+		select LABELANALYZER from tpsb_user_label t where T.PICID = #{picId} and T.LABELERRORNUM in (0,1)  and T.DEL_FLAG = 0
+	 </select>
+	 
+	 
+	 <select id="findLabelsByPicId" resultType="string">
+		select  T.LABELANALYZER from tpsb_user_label t where T.PICID = #{picId} and T.LABELERRORNUM in (0,1) and T.DEL_FLAG = 0
+		group by T.LABELANALYZER,T.USERID
+	 </select>
+	 
+	 <select id="picLabelstate" resultType="int">
+	 	select count(*) from tpsb_pic_label where picid = #{picId}
+	 </select>
+	 
+	 
+	 
+	 <insert id="insertPicLabel" parameterType="PicLabel">
+	 
+	 insert into TPSB_PIC_LABEL 
+	 (	 
+	 	 PICID,
+		 ID,
+		 LABEL_PARENT_ID,
+		 LABEL,
+		 IS_PARENT,
+		 STATUS,
+		 CREATE_DATE,
+		 UPDATE_DATE
+		 ) 
+	 values (
+		 #{picId},
+		 #{id},
+		 #{labelParentId},
+		 #{label},
+		 #{isParent},
+		 #{status},
+		 #{createDate}, 
+		 #{updateDate}
+	 )
+	 
+	 <!-- insert into tpsb_pic_label(
+		  PICID  ,
+		  
+		  <if test="labels != null">
+				
+				foreach:循环传入的集合参数
+				collection:传入的集合的变量名称
+				item:每次循环将循环出的数据放入这个变量中
+				open:循环开始拼接的字符串
+				close:循环结束拼接的字符串
+				separator:循环中拼接的分隔符
+				
+				<foreach collection="labels" index="num" item="label" open="" close="" separator=",">
+					LABEL${num}
+				</foreach>
+			</if>
+	 	) 
+	 values (
+	 
+	 #{picId}
+	 <if test="labels != null">
+				
+				foreach:循环传入的集合参数
+				collection:传入的集合的变量名称
+				item:每次循环将循环出的数据放入这个变量中
+				open:循环开始拼接的字符串
+				close:循环结束拼接的字符串
+				separator:循环中拼接的分隔符
+				
+				<foreach collection="labels" item="label" open="," close=")" separator=",">
+					#{label}
+				</foreach>
+			</if> -->
+	 
+	 </insert>
+	 
+	 <select id="findPicLabelByPicId" parameterType="string" resultType="PicLabel">
+	 	select * from  tpsb_pic_label where PICID = #{picId} and status = 1
+	 </select>
+	 
+	 
+	 <update id="updatePicLabelStatusTo1" parameterType="string">
+	 	update TPSB_PICTURE s set S.LABELSTATUS= 1 where S.ID = #{picId}
+	 </update>
+	 
+	 <update id="updatePicLabelStatusTo0" parameterType="string">
+	 	update TPSB_PICTURE s set S.LABELSTATUS= 0 where S.ID = #{picId}
+	 </update>
+	 
+	<select id="findLabelsByPicIdDis" resultType="string">
+		select distinct T.LABELANALYZER from tpsb_user_label t where T.PICID = #{picId} and T.LABELERRORNUM in (0,1) and T.DEL_FLAG = 0
+	 </select>
+	 
+	 
+	 <insert id="insertErrorTabel" parameterType="UserLabel" >
+	 	insert into tpsb_error_label e values(#{id},#{label},#{picId})
+	 </insert>
+	 
+	 <select id="errorTabelNumByUser" parameterType="string" resultType="string">
+	 	select count(*) from tpsb_error_label e where e.USERID = #{id} and e.ERRORLABEL='${label}'
+		group by e.USERID
+	 </select>
+	 
+	 <update id="errorUserLabel" parameterType="UserLabel">
+	 	update TPSB_USER_LABEL ul set LABELERRORNUM = LABELERRORNUM+1 where UL.PICID = #{picId}  and UL.LABEL =#{label} and ul.DEL_FLAG = 0
+	 </update>
+
+	<update id="completePicLabel" parameterType="string">
+		update TPSB_PICTURE p set P.TAGSTATUS = 1 where P.ID=#{picId}
+	</update>
+	
+	<select id="checkPicParentLabelByPicId" resultType="int" parameterType="string">
+		select
+		    count(*) 
+		from tpsb_pic_label p 
+		    where P.ID = #{oneLabelId}
+		        and P.PICID = #{picId}
+		        and P.STATUS = 1
+	</select>
+	
+	<select id="findFinaLabelsByPicId" parameterType="string" resultType="PicLabel">
+	select
+	    *
+	from tpsb_pic_label p 
+	    where P.PICID = #{picId}
+	
+	</select>
+	
+	
+	<insert id="insertOneTwoCandiLabel" parameterType="PicLabel">
+		insert 
+			into 
+		TPSB_ONELABEL_TWOCANDILABEL(
+			  PICID,
+			  LABEL_PARENT_ID,
+			  LABEL,
+			  CREATE_BY,
+			  CREATE_DATE,
+			  UPDATE_BY,
+			  UPDATE_DATE,
+			  REMARKS,
+			  DEL_FLAG
+		) values(	
+			#{picId},
+			#{labelParentId},
+			#{label},
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate}, 
+			#{remarks}, 
+			#{delFlag}
+		)
+		
+	</insert>
+	
+	
+	<select id="checkOnoTwoLabelNumByPicIdAndOneId" parameterType="string"  resultType="int">
+	select count(*) from(
+	select distinct create_by from TPSB_ONELABEL_TWOCANDILABEL  
+	where PICID = #{picId} and LABEL_PARENT_ID = #{oneLabelId} and LABEL = #{twoCandidateLabel}
+	)
+	</select>
+	
+	
+	<select id="findWriteSuccNumUserIdByPicIdAndLabel" parameterType="string" resultType="string">
+		select P.USERID from tpsb_user_label p where 
+			P.PICID = #{picId} and P.LABEL like '%${label}%' and p.DEL_FLAG = 0
+	</select>
+	
+	
+	<select id="findSelectSuccNumUserIdByPicIdAndLabel" parameterType="string" resultType="string">
+		select create_by from TPSB_ONELABEL_TWOCANDILABEL where picid = #{picId} and label = #{label}
+	
+	</select>
+	
+	<select id="getUserSuccessRecord" parameterType="string" resultType="UserSuccessRecord">
+		select * from tpsb_user_success us where us.userid = #{userId}
+	</select>
+	
+	<insert id="insertUserSuccessRecord" parameterType="UserSuccessRecord">
+		insert 
+		into 
+		tpsb_user_success values
+		(
+			#{userId},
+			#{writeSuccNum},
+			#{selectSuccNum}
+			)
+	</insert>
+	
+	<update id="updateUserSuccessRecord" parameterType="UserSuccessRecord">
+		update tpsb_user_success  
+			set 
+				writesuccnum = #{writeSuccNum},
+				selectSuccNum = #{selectSuccNum}
+				
+		where 
+			userid = #{userId}
+	</update>
+	
+	
+	<insert id="savePicCatTmp" parameterType="string" >
+		insert into TPSB_PIC_CAT_TMP values(#{picId},#{picCatId})
+	</insert>
+	
+	<select id="getMaxPicCatIdByPicId" parameterType="string" resultType="string">
+		select p.catid from tpsb_pic_cat_tmp p 
+		where p.picid = #{picId} and rownum = 1
+		group by p.catid
+		order by count(p.catid)  desc 
+	</select>
+	
+	
+	<insert id="savePicCat" parameterType="string" >
+		insert into TPSB_PIC_CAT values(#{picId},#{picCatId})	
+	</insert>
+	
+	
+	<select id="getSuccLabelsByPicId" parameterType="string" resultType="PicLabel">
+		select P.ID,P.LABEL_PARENT_ID,P.LABEL,T.URL from tpsb_pic_label p join tpsb_picture t on T.ID = P.PICID where P.PICID = #{picId}
+	</select>
+	
+	
+	<insert id="insertUserIntegral" parameterType="UserIntegral">
+		insert into tpsb_user_integral values(
+		#{picId},
+		#{userId},
+		#{label},
+		#{picUrl},
+		#{integral},
+		#{createBy.id}, 
+		#{createDate}, 
+		#{updateBy.id}, 
+		#{updateDate}, 
+		#{remarks}, 
+		#{delFlag}
+		)
+	</insert>
+	
+	<select id="getUserIntegralNum" resultType="int" parameterType="UserIntegral">
+		select count(*) from tpsb_user_integral u 
+			where   u.picid = #{picId}
+					and u.userId = #{userId}
+					and label = #{label}
+	</select>
+	
+	<select id="findHistoryLabelsByUserId" resultType="UserLabel" parameterType="string">
+			select p.id,p.url,u.label,U.UPDATE_DATE 
+				from tpsb_user_label u 
+					join tpsb_picture p 
+						on U.PICID = P.ID 
+				where U.USERID =#{userId}
+					and P.TAGSTATUS = 0 
+					and P.DEL_FLAG = 0
+					and u.MODIFYSTATUS=0
+					and u.DEL_FLAG = 0
+	</select>
+	
+	<select id="findHistorySelectLabels" resultType="UserLabel" parameterType="string">
+			select p.id,p.url,u.label,U.UPDATE_DATE 
+					from TPSB_ONELABEL_TWOCANDILABEL u 
+						join tpsb_picture p 
+							on U.PICID = P.ID 
+					where U.CREATE_BY =#{userId}
+							and P.TAGSTATUS = 0
+							and P.DEL_FLAG = 0
+							and u.MODIFYSTATUS = 0
+	</select>
+	
+	<select id="getUpdateNum" resultType="int" parameterType="UserLabel">
+		select U.UPDATENUM 
+				from tpsb_user_label u 
+			where U.USERID =#{updateBy.id}  
+				and U.PICID =#{picId}
+				and U.LABEL = #{label}
+				and u.DEL_FLAG = 0
+	</select>
+	
+	<update id="updateWrite"  parameterType="UserLabel">
+		update tpsb_user_label u set 
+				U.LABEL = #{targetLabel},
+				U.LABELANALYZER = #{labelAnalyzer},
+				U.CREATE_BY =#{updateBy.id},
+				U.CREATE_DATE=#{updateDate},
+				U.UPDATENUM = U.UPDATENUM + 1
+			where U.USERID =#{updateBy.id}  
+				and U.PICID =#{picId}
+				and U.LABEL = #{label}
+				and u.DEL_FLAG = 0
+	</update>
+	
+	<delete id="deleteWrite" parameterType="UserLabel">
+		update tpsb_user_label u set 
+				U.DEL_FLAG = 1
+			where U.USERID =#{updateBy.id}  
+				and U.PICID =#{picId}
+				and U.LABEL = #{label}
+				and u.DEL_FLAG = 0
+	</delete>
+	
+	<delete id="deleteSelect" parameterType="UserLabel">
+		update TPSB_ONELABEL_TWOCANDILABEL u set 
+				U.DEL_FLAG = 1
+			where U.CREATE_BY =#{updateBy.id}  
+				and U.PICID =#{picId}
+				and U.LABEL = #{label}
+	</delete>
+	
+	<update id="updateModifyStatusToNot" parameterType="string">
+		update tpsb_user_label l 
+				set L.MODIFYSTATUS = 1 
+			where L.PICID = #{picId}
+				<if test="labels != null">
+					<foreach collection="labels" item="label" open=" and L.LABELANALYZER like " close="" separator=" or L.LABELANALYZER like">
+						'%${label}%'
+					</foreach>
+				</if>
+				and l.DEL_FLAG = 0
+	</update>
+	
+	<update id="updateSelectModifyStatusToNot" parameterType="string">
+		update TPSB_ONELABEL_TWOCANDILABEL o 
+				set O.MODIFYSTATUS = 1 
+			where O.PICID = #{picId}
+				  and O.LABEL = #{label}
+	</update>
+	
+	<select id="getUserPermisStatusByUserId" resultType="string" parameterType="string">
+			select JURISDICSTATUS from TPSB_USER_JURISDIC u where U.USERID = #{userId}
+	</select>
+	
+	
+</mapper> 

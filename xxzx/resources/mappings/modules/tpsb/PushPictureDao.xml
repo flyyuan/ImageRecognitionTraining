@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxzx.jeesite.modules.tpsb.dao.PushPictureDao">
+	
+	
+	<select id="findPicNum" resultType="string">
+		select P.ID
+             from 
+                 tpsb_picture p 
+             where P.DEL_FLAG=0 
+                 and P.TAGSTATUS=0
+	</select>
+	
+	
+	<select id="findSelectPic" resultType="string">
+		select P.ID
+             from 
+                 tpsb_picture p 
+             where P.DEL_FLAG=0 
+                 and P.TAGSTATUS=0
+                 and P.LABELSTATUS = 1
+	</select>
+	
+	
+	<select id="checkPicId" resultType="int" parameterType="string">
+		select count(*)
+             from 
+                 tpsb_picture p 
+             where P.DEL_FLAG=0 
+                 and P.TAGSTATUS=0 and P.ID = #{picId}
+	</select>
+	
+	
+	<select id="getPictureByNum" parameterType="PushPicture" resultType="UploadPicture">
+		select 
+			* 
+		from (
+			 select 
+			 	P.ID,P.TAGSTATUS,P.URL,P.PICNAME,P.LABELSTATUS 
+			 from 
+			 	tpsb_picture p 
+			 where P.DEL_FLAG=0 
+			 	and P.TAGSTATUS=0 
+			 	
+			 	<if test="picIdList != null">
+				<!-- 
+				foreach:循环传入的集合参数
+				collection:传入的集合的变量名称
+				item:每次循环将循环出的数据放入这个变量中
+				open:循环开始拼接的字符串
+				close:循环结束拼接的字符串
+				separator:循环中拼接的分隔符
+				 -->
+				<foreach collection="picIdList" item="picId" open=" and P.ID not in (" close=")" separator=",">
+					#{picId}
+				</foreach>
+			</if>
+			 		order by dbms_random.value 
+		
+		) where rownum between 1 and	#{picNumber}
+		
+	</select>
+	
+	
+	<select id="getPictureByNumAndNotPicId"  resultType="UploadPicture">
+		select 
+			* 
+		from (
+			 select 
+			 	P.ID,P.TAGSTATUS,P.URL,P.PICNAME,P.LABELSTATUS 
+			 from 
+			 	tpsb_picture p 
+			 where P.DEL_FLAG=0 
+			 	and P.TAGSTATUS=0 
+			 	
+		<if test="picIdList != null">
+				<!-- 
+				foreach:循环传入的集合参数
+				collection:传入的集合的变量名称
+				item:每次循环将循环出的数据放入这个变量中
+				open:循环开始拼接的字符串
+				close:循环结束拼接的字符串
+				separator:循环中拼接的分隔符
+				 -->
+				<foreach collection="picIdList" item="picId" open=" and P.ID not in (" close=")" separator=",">
+					#{picId}
+				</foreach>
+			</if>
+			
+			 		order by dbms_random.value 
+		 		
+		) where rownum between 1 and	#{picNumber}
+		
+		
+	</select>
+	
+	
+	<select id="findLabelsByPicId" resultType="string">
+		select distinct t.LABELANALYZER from tpsb_user_label t where T.PICID = #{picId} and t.LABELERRORNUM in(0,1) and t.DEL_FLAG = 0
+	 </select>
+	
+	
+	<select id="findLabelsByUserId" parameterType="string" resultType="string">
+		select distinct UL.LABELANALYZER from TPSB_USER_LABEL ul where UL.USERID = #{userId} and UL.DEL_FLAG = 0
+	</select>
+	
+	<select id="findPictureByPicIdList" parameterType="java.util.List" resultType="UploadPicture">
+		select 
+     P.ID,P.TAGSTATUS,P.URL,P.PICNAME,P.LABELSTATUS 
+		from 
+		     tpsb_picture p 
+		where P.DEL_FLAG=0 
+		     and P.TAGSTATUS=0  
+		     
+		     
+		     <if test="picIdList != null">
+				<!-- 
+				foreach:循环传入的集合参数
+				collection:传入的集合的变量名称
+				item:每次循环将循环出的数据放入这个变量中
+				open:循环开始拼接的字符串
+				close:循环结束拼接的字符串
+				separator:循环中拼接的分隔符
+				 -->
+				<foreach collection="picIdList" item="picId" open=" and P.ID in (" close=")" separator=",">
+					#{picId}
+				</foreach>
+			</if>
+		
+	</select>
+	
+	
+	<select id="findOneLabelsByPicId" parameterType="string" resultType="PicLabel">
+		select * from tpsb_pic_label p where P.PICID = #{picId} and P.STATUS = 1
+	</select>
+	
+	
+	<select id="findTwoCandidateLabelsByPidId" parameterType="string" resultType="string">
+		select distinct T.LABEL from tpsb_user_label t where T.PICID = #{picId} and t.LABELERRORNUM in(0,1) and t.DEL_FLAG = 0
+	</select>
+	
+	
+	<select id="getUserPermisStatusByUserId" resultType="string" parameterType="string">
+			select JURISDICSTATUS from TPSB_USER_JURISDIC u where U.USERID = #{userId}
+	</select>
+	
+	<select id="getSelectPicId" resultType="UploadPicture">
+			select P.ID,P.TAGSTATUS,P.URL,P.PICNAME,P.LABELSTATUS 
+         from tpsb_picture p where P.DEL_FLAG = 0 and P.TAGSTATUS = 0 and P.LABELSTATUS = 1
+        order by dbms_random.value 
+	</select>
+	
+	<select id="getWritePicId" resultType="UploadPicture">
+		select P.ID,P.TAGSTATUS,P.URL,P.PICNAME,P.LABELSTATUS 
+         from tpsb_picture p where P.DEL_FLAG = 0 and P.TAGSTATUS = 0 and P.LABELSTATUS = 0
+        order by dbms_random.value 
+	</select>
+	
+	<select id="getPicCatByNum" resultType="TpsbCat" parameterType="int"> 
+		select * from (
+			select * from tpsb_cat c where C.PARENT_ID = 0 and C.STATUS = 1
+			order by DBMS_RANDOM.VALUE) where rownum between 1 and    #{picCatNum}
+	</select>
+	
+	<select id="findAssoLabelsByUserId" resultType="string" parameterType="string">
+		select distinct L.LABEL from tpsb_user_label l 
+			join TPSB_USER_ASSOCIATE a 
+				on L.USERID = A.USERIDB 
+					where A.USERIDA = #{userId}
+						  and L.LABEL not in (
+								select distinct l.label 
+									from tpsb_user_label l 
+								where 
+									L.USERID = #{userId} and l.DEL_FLAG = 0) and l.DEL_FLAG = 0
+	
+	</select>
+	
+	<select id="getPicByNum" parameterType="int" resultType="string">
+		select * from (select P.ID
+      from tpsb_picture p 
+             where P.DEL_FLAG=0 
+                 and P.TAGSTATUS=0 order by dbms_random.value ) where rownum between 1 and  #{picNum}
+	</select>
+	
+	
+	<select id="findUserCatsByUserId" parameterType="string" resultType="string"> 
+		select distinct C.CATID from tpsb_user_cat c where C.DEL_FLAG = 0 and C.USERID = #{userId}
+	</select>
+	
+	
+	<select id="getPicCatByCatIds" resultType="TpsbCat">
+		select * from tpsb_cat c  
+		
+		 <if test="picCatIds != null">
+				<!-- 
+				foreach:循环传入的集合参数
+				collection:传入的集合的变量名称
+				item:每次循环将循环出的数据放入这个变量中
+				open:循环开始拼接的字符串
+				close:循环结束拼接的字符串
+				separator:循环中拼接的分隔符
+				 -->
+				<foreach collection="picCatIds" item="picCatId" open=" where c.id in (" close=")" separator=",">
+					#{picCatId}
+				</foreach>
+			</if>
+	</select>
+	
+		
+</mapper>
+

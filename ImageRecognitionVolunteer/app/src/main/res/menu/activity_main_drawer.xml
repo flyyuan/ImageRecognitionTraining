@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_data"
+            android:icon="@drawable/person"
+            android:title="@string/nav_item_data"/>
+        <item
+            android:id="@+id/nav_modify"
+            android:icon="@drawable/modify"
+            android:title="@string/nav_item_modify"/>
+        <item
+            android:id="@+id/nav_integral"
+            android:icon="@drawable/integral"
+            android:title="@string/nav_item_integral"/>
+        <item
+            android:id="@+id/nav_habit"
+            android:icon="@drawable/habit"
+            android:title="@string/nav_item_habit"/>
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/feedback"
+            android:title="@string/nav_item_feedback"/>
+        <item
+            android:id="@+id/nav_quit"
+            android:icon="@drawable/quit"
+            android:title="@string/nav_item_quit"/>
+    </group>
+
+    <item android:title="">
+        <menu>
+        </menu>
+    </item>
+
+</menu>

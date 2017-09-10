@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxzx.jeesite.modules.tpsb.dao.TaskAllocatDao">
+	
+	
+	<insert id="insert" parameterType="TaskAllocat">
+		insert into tpsb_user_taskallocat(
+			id,
+			userid,
+			taskSum,
+			CREATE_BY,
+			CREATE_DATE,
+			UPDATE_BY,
+			UPDATE_DATE,
+			REMARKS
+		) values (
+			#{id},
+			#{userid},
+			#{taskSum},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks}
+		)
+	</insert>
+	
+	<insert id="insertAllTask">
+		insert all into tpsb_user_taskallocat (
+		    id,
+			userid,
+			taskSum,
+			CREATE_BY,
+			CREATE_DATE,
+			UPDATE_BY,
+			UPDATE_DATE,
+			REMARKS
+		)
+		<foreach collection="list" item="pic" open=" values " close="" separator=" into tpsb_user_taskallocat(
+			 id,
+			userid,
+			taskSum,
+			CREATE_BY,
+			CREATE_DATE,
+			UPDATE_BY,
+			UPDATE_DATE,
+			REMARKS
+		) values"  index="a">
+			(
+				#{id},
+				#{userid},
+				#{taskSum},
+				#{createBy.id},
+				#{createDate},
+				#{updateBy.id},
+				#{updateDate},
+				#{remarks}
+			)
+		</foreach>
+		 SELECT 1 FROM DUAL
+	</insert>
+	
+	<update id="finishUpdate" >	
+		update tpsb_user_taskallocat t
+			set FINISHNUM = FINISHNUM +1
+		where t.userid = #{userid}
+			and 
+				(select to_char(t.CREATE_DATE,'yy-mm-dd') 
+						from dual 
+					) 
+				= (
+					select to_char(sysdate,'yy-mm-dd')  
+						from dual
+					)
+			and t.id = #{id}	
+	</update>
+	
+	<select id="findAllUserId" resultType="string">
+		select U.ID from sys_user u where U.DEL_FLAG = 0
+	</select>
+	
+	<select id="getPicByNum" parameterType="string" resultType="string">
+		select * from (select P.ID
+      from tpsb_picture p 
+             where P.DEL_FLAG=0 
+                 and P.TAGSTATUS=0 order by dbms_random.value ) where rownum between 1 and  #{picNum}
+	</select>
+	
+	<insert id="insertToPicTask" parameterType="TaskAllocat">
+		insert into TPSB_PIC_TASK(
+			TASKID,
+  			PICID,
+			CREATE_BY,
+			CREATE_DATE,
+			UPDATE_BY,
+			UPDATE_DATE,
+			REMARKS
+		) values(
+			#{id},
+			#{picId},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks}
+		)
+	
+	</insert>
+	
+	
+	<select id="findTaskByDate" parameterType="string" resultType="TaskAllocat">
+	select t.*,U.NAME from TPSB_USER_TASKALLOCAT t join sys_user u on T.USERID = U.ID where (select to_char(t.CREATE_DATE,'yyyy-mm-dd') 
+                        from dual 
+                    ) 
+                = #{date}
+		
+	
+	</select>
+	
+	<select id="getPicNumByPicIdAndTaskId" resultType="int" parameterType="TaskAllocat">
+		select count(*) from tpsb_pic_task pt where PT.PICID =#{picId}  and PT.TASKID =#{id} 
+	</select>
+	<select id="getPicsByTaskId" resultType="TaskAllocat" parameterType="string">
+		select * from tpsb_pic_task pt where PT.TASKID = #{taskId}
+	</select>
+
+</mapper>

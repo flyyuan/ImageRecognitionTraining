@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="cn.thxy.imagerecognition.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+    <android.support.v7.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:id="@+id/input_cardview"
+        android:layout_centerHorizontal="true"
+        android:background="#d9e4ea"
+
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_inputlabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/ll_category"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#404993ed"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/content_tv_show"
+                    android:textSize="18sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.CardView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="2dp"
+                        android:background="#d9e4ea"
+                        app:cardCornerRadius="10dp"
+                        >
+
+                        <Button
+                            android:id="@+id/tv_c1"
+                            android:layout_width="56dp"
+                            android:layout_height="40dp"
+                            android:background="@color/colorAccent"
+                            android:gravity="center"
+                            android:textColor="@color/background_gray"/>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="6dp"
+                        android:background="#d9e4ea"
+                        app:cardCornerRadius="10dp"
+                        >
+
+                        <Button
+                            android:id="@+id/tv_c2"
+                            android:layout_width="56dp"
+                            android:layout_height="40dp"
+                            android:background="@color/colorAccent"
+                            android:gravity="center"
+                            android:textColor="@color/background_gray"
+                            />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="6dp"
+                        android:background="#d9e4ea"
+                        app:cardCornerRadius="10dp"
+                        >
+
+                        <Button
+                            android:id="@+id/tv_c3"
+                            android:layout_width="56dp"
+                            android:layout_height="40dp"
+                            android:background="@color/button_color"
+                            android:gravity="center"
+                            android:textColor="@color/background_gray"
+                            />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="6dp"
+                        android:background="#d9e4ea"
+                        app:cardCornerRadius="10dp"
+                        >
+
+                        <Button
+                            android:id="@+id/tv_c4"
+                            android:layout_width="56dp"
+                            android:layout_height="40dp"
+                            android:background="@color/colorAccent"
+                            android:gravity="center"
+                            android:textColor="@color/background_gray"
+                            />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="6dp"
+                        android:background="#d9e4ea"
+                        app:cardCornerRadius="10dp"
+                        >
+
+                        <Button
+                            android:id="@+id/tv_c5"
+                            android:layout_width="56dp"
+                            android:layout_height="40dp"
+                            android:background="@color/colorAccent"
+                            android:gravity="center"
+                            android:textColor="@color/background_gray"
+                            />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="6dp"
+                        android:background="#d9e4ea"
+                        app:cardCornerRadius="10dp"
+                        >
+
+                        <Button
+                            android:id="@+id/tv_c6"
+                            android:layout_width="48dp"
+                            android:layout_height="40dp"
+                            android:background="@color/colorAccent"
+                            android:gravity="center"
+                            android:textColor="@color/background_gray"
+                            />
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="#404993ed"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#404993ed"
+                    >
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/content_tv_show2"
+                    android:textSize="14sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="5dp"
+                            android:text="@string/content_tv_label1"
+                            android:textColor="#602e80e4"
+                            android:textSize="15sp"/>
+
+                        <EditText
+                            android:id="@+id/et_label1"
+                            android:layout_width="200dp"
+                            android:layout_height="43dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@null"
+                            android:hint=""/>
+                    </LinearLayout>
+                    <!--分割线-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#404993ed">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="5dp"
+                            android:text="@string/content_tv_label2"
+                            android:textColor="#602e80e4"
+                            android:textSize="15sp"/>
+
+                        <EditText
+                            android:id="@+id/et_label2"
+                            android:layout_width="200dp"
+                            android:layout_height="43dp"
+                            android:layout_marginLeft="5dp"
+                            android:background="@null"
+                            android:hint=""/>
+                    </LinearLayout>
+                    <!--分割线-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="#404993ed">
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <!--中间图画的布局-->
+        <com.bm.library.PhotoView
+            android:id="@+id/main_iamgeview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:paddingTop="50dp"
+            android:visibility="visible"
+            android:layout_marginTop="160dp"/>
+       <!-- <ImageView
+            android:id="@+id/main_iamgeview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:paddingTop="50dp"
+            android:layout_marginTop="160dp"
+            />-->
+
+
+    <cn.thxy.imagerecognition.ratio.RatioLayout
+        android:id="@+id/ratio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="90dp"
+
+        android:layout_alignParentTop="true">
+        <cn.thxy.imagerecognition.ratio.DynamicAvatarView
+            android:id="@+id/dynamic"
+            android:src="#fff"
+            android:layout_marginTop="140dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </cn.thxy.imagerecognition.ratio.RatioLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_myreview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:visibility="visible">
+        <LinearLayout
+            android:id="@+id/ll_TwoCandidateLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/content_tv_show3"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_twolabel1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="15dp"
+                    android:text="@string/content_tv_label1"
+                    android:textSize="17sp"/>
+
+                <EditText
+                    android:id="@+id/et_twolabel1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/content_et_hint"
+                    android:paddingStart="10dp"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:background="@color/background_gray">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_twolabel2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="15dp"
+                    android:text="@string/content_tv_label2"
+                    android:textSize="17sp"/>
+
+                <EditText
+                    android:id="@+id/et_twolabel2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/content_et_hint"
+                    android:paddingStart="10dp"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:background="@color/background_gray">
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_error"
+            android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:id="@+id/rl_change"
+            android:background="@color/background_gray">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_error"
+                android:paddingTop="5dp"
+                android:text="@string/content_tv_showerror"
+                android:textColor="#99f53939"
+                android:layout_alignParentStart="true"
+                android:textSize="16dp"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/background_gray"
+                android:layout_alignParentEnd="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/button_color"
+                    android:id="@+id/tv_changemode"
+                    android:padding="5dp"
+                    android:text="@string/content_tv_changemode"
+                />
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/myreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/re_writelabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_below="@+id/main_iamgeview"
+        android:visibility="visible">
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

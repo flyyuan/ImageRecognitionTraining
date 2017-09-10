@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">高速ラベル</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="dialogTittle">自定义标签</string>
+    <string name="dialogCancel">取消</string>
+    <string name="dialogSure">确定</string>
+    <string name="action_settings">セットアップ</string>
+    <string name="action_language">言語</string>
+    <string name="add">+</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="cate_other">他の</string>
+
+    <string name="nav_item_data">個人情報</string>
+    <string name="nav_item_modify">ラベルを変更します</string>
+    <string name="nav_item_integral">統合</string>
+    <string name="nav_item_habit">関心</string>
+    <string name="nav_item_feedback">フィードバック</string>
+    <string name="nav_item_quit">やめます</string>
+
+    <string name="loading">積載</string>
+
+
+    <string name="welcome_text">高速ラベル</string>
+
+    <string name="userinfo_toolbar_title">个人信息</string>
+    <string name="userinfo_tv_loginanme">登录名：</string>
+    <string name="userinfo_cardview_title">------------个人信息-------------</string>
+    <string name="userinfo_tv_name">姓名</string>
+    <string name="userinfo_tv_mobile">手机</string>
+    <string name="userinfo_tv_email">邮箱</string>
+    <string name="userinfo_tv_modifypwd">修改密码</string>
+
+
+    <string name="userhobby_toolbar_title">用户兴趣</string>
+    <string name="userhobby_tv_changehobby">修改偏好</string>
+    <string name="userhobby_cardview_title">------当前用户的兴趣------</string>
+
+    <string name="register_title">快标注</string>
+    <string name="register_tv_mobile">手机号码：</string>
+    <string name="register_tv_email">邮箱：</string>
+    <string name="register_tv_loginname">登陆名：</string>
+    <string name="register_tv_name">真实姓名：</string>
+    <string name="register_tv_pwd">密码：</string>
+    <string name="register_tv_comfirmpwd">确定密码：</string>
+    <string name="register_btn_re">注册</string>
+    <string name="register_tv_turnlogin">已有账号，点击登陆</string>
+
+    <string name="nav_header_name">用户名：</string>
+    <string name="nav_header_tv_name">无</string>
+
+    <string name="modifypwd_toolbar_title">修改密码</string>
+    <string name="modifypwd_tv_tip">Tip:修改密码后，会退出登录哦！</string>
+    <string name="modifypwd_et_pwd">原密码</string>
+    <string name="modifypwd_et_newpwd">新密码</string>
+    <string name="modifypwd_et_comnewpwd">确定密码</string>
+    <string name="modifypwd_btn_submit">确定</string>
+
+
+    <string name="modifylabel_toolbar_title">修改标签</string>
+    <string name="modifylabel_tv_tip">Tip:</string>
+    <string name="modifylabel_tv_tiptext">点击标签，修改内容</string>
+
+    <string name="login_title">高速ラベル</string>
+    <string name="login_et_loginname">アカウント</string>
+    <string name="login_et_pwd">パスワード</string>
+    <string name="login_getpwd">パスワードを忘れました？</string>
+    <string name="login_btn_login">着陸</string>
+    <string name="login_tv_register">登録</string>
+
+    <string name="item_userhobby_tv_title">兴趣偏好</string>
+
+    <string name="item_modifylabel_tv_label">标签：</string>
+    <string name="item_modifylabel_tv_labelinfo">标签信息</string>
+    <string name="item_modifylabel_tv_modifytime">标注时间：</string>
+    <string name="item_modifylabel_btn_delete">删除</string>
+
+    <string name="item_integrel_tv_label">标注标签</string>
+    <string name="item_integrel_tv_time">标注时间：</string>
+
+    <string name="item_hobby_tv">偏好</string>
+
+    <string name="integral_toolbar_title">当前积分</string>
+    <string name="integal_tv_username">志愿者01</string>
+    <string name="integal_tv_allintegral">总积分：</string>
+    <string name="integral_turndate">修改资料</string>
+    <string name="integral_noneshow">当前无积分记录</string>
+    <string name="integral_show">当前积分记录</string>
+
+    <string name="hobby_tv_title1">选择一些你喜欢的标签</string>
+    <string name="hobby_tv_title2">我们会推送相关的图片哟</string>
+    <string name="hobby_btn_submit">保存</string>
+
+    <string name="content_tv_show">カテゴリラベルを選択してください</string>
+    <string name="content_tv_show2">タグ情報を入力してください。</string>
+    <string name="content_tv_label1">ラベル1：</string>
+    <string name="content_tv_label2">ラベル2：</string>
+    <string name="content_tv_show3">絞り込みラベル</string>
+    <string name="content_et_hint">絞り込みラベルを入力します。</string>
+    <string name="content_tv_showerror">関連かどうか、こちらをクリックしてください</string>
+    <string name="content_tv_changemode">モードの切り替え</string>
+
+    <string name="app_bar_clear">クリーン</string>
+    <string name="app_bar_submit">提出する</string>
+    <string name="app_bar_toolbar_title">写真のタグ付け</string>
+
+
+    <string name="toast_feedback">有问题请联系天软团队</string>
+
+
+    <string name="toast_mode1">モード1</string>
+    <string name="toast_mode2">モード2</string>
+    <string name="main_error">请点击无效的标签值</string>
+    <string name="main_iserror">有标签与该图没有关联,请点击这里</string>
+    <string name="toast_labelinfo">情報</string>
+    <string name="toast_quit">もう一度押すと、プログラムを終了します</string>
+    <string name="toast_labelsucess">成功</string>
+    <string name="toast_labelfail">故障,しばらくお待ちください</string>
+    <string name="toast_labelerror">没有标注权限，请联系管理员</string>
+
+
+    <string name="dialog_title">言語を変更</string>
+
+
+</resources>

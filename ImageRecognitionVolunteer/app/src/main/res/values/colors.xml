@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#70b5ed</color>
+    <color name="shallow_gray">#44000000</color>
+    <color name="shallow_blue">#770000FF</color>
+    <color name="gray">#999999</color>
+    <color name="white">#ffffff</color>
+    <color name="PressTextColor">#1295DA</color>
+    <color name="loginBackground">#f1f1f1</color>
+    <color name="denglu_btn_color">#1295DA</color>
+    <color name="hintTextColor">#ffffff</color>
+    <color name="register_reset_btn_color">#d25d5d</color>
+    <color name="button_color">#70b5ed</color>
+    <color name="categorybutton_color">#70b5ed</color>
+    <color name="background_gray">#eceaea</color>
+    <color name="error_color">#e2d6d6</color>
+    <color name="error_backgroundcolor">#ed4848</color>
+</resources>

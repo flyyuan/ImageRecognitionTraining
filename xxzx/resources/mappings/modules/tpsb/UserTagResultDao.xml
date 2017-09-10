@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxzx.jeesite.modules.tpsb.dao.UserTagResultDao">
+	
+	
+	<select id="findWriteUserResult" resultType="UserTagResult" parameterType="UserTagResult">
+		select su.id,su.name,U.USERID,count(u.picid) as writeNum,J.JURISDICSTATUS,su.photo  from tpsb_user_label  u 
+join sys_user su on sU.ID = U.USERID left join TPSB_USER_JURISDIC j on u.USERID = J.USERID 
+<if test="name != null and name != ''">
+			where su.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">CONCAT('%', #{name}, '%')</if>
+		</if>
+group by U.USERID , su.name,J.JURISDICSTATUS,su.id,su.photo 
+	</select>
+	
+	<select id="findSelectUserResult" resultType="UserTagResult" parameterType="UserTagResult">
+			select u.id,U.NAME,OT.CREATE_BY as userid,u.photo,count(ot.picid) as selectNum ,J.JURISDICSTATUS from TPSB_ONELABEL_TWOCANDILABEL ot 
+		join sys_user u on U.ID = OT.CREATE_BY left join TPSB_USER_JURISDIC j on u.id = J.USERID 
+		<if test="name != null and name != ''">
+			where u.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">CONCAT('%', #{name}, '%')</if>
+		</if>
+		
+		group by OT.CREATE_BY,U.NAME,J.JURISDICSTATUS,u.id,u.photo
+	</select>
+	
+	<select id="findUserSuccRecord" resultType="UserTagResult">
+		select s.*,J.JURISDICSTATUS from TPSB_USER_SUCCESS s left join TPSB_USER_JURISDIC j on S.USERID = J.USERID 
+	</select>
+	
+	
+	
+	<select id="getUserTagResult" parameterType="string" resultType="UserTagResult">
+		select A.USERID,a.writeNum,b.selectNum from (select UI.USERID,count(*) as writeNum from tpsb_user_label UI
+		where UI.CREATE_DATE <![CDATA[>= ]]> to_date('${startDate}00:00:00','yyyy-mm-ddHH24:MI:SS')
+		and UI.CREATE_DATE<![CDATA[ <=  ]]>to_date('${endDate}23:59:59','yyyy-mm-ddHH24:MI:SS')
+		and UI.USERID = #{userId}
+		group by UI.USERID ) a left join (select ot.CREATE_BY as userid,count(*) as selectNum from TPSB_ONELABEL_TWOCANDILABEL ot where
+		ot.CREATE_DATE <![CDATA[>=  ]]>to_date('${startDate}00:00:00', 'yyyy-mm-ddHH24:MI:SS')
+		and ot.CREATE_DATE <![CDATA[<=  ]]>to_date('${endDate} 23:59:59', 'yyyy-mm-ddHH24:MI:SS')
+		and ot.CREATE_BY = #{userId}
+		group by ot.CREATE_BY) b on a.userid = a.USERID
+	</select>
+	
+	
+	<select id="getSuccWriteAndSelect" parameterType="string" resultType="double">
+		select count(*) from TPSB_USER_INTEGRAL ui where 
+		UI.CREATE_DATE<![CDATA[ >=  ]]>to_date('${startDate}00:00:00', 'yyyy-mm-ddHH24:MI:SS')
+		and UI.CREATE_DATE<![CDATA[ <=  ]]>to_date('${endDate}23:59:59', 'yyyy-mm-ddHH24:MI:SS')
+		and UI.USERID = #{userId}
+		group by UI.INTEGRAL,ui.userid
+		order by INTEGRAL desc
+	</select>
+	
+	<select id="findUserLabelsByUserId" parameterType="UserLabel" resultType="UserLabel">
+		select u.*,P.PICNAME,P.URL from tpsb_user_label u 
+			join tpsb_picture p on
+			U.PICID = P.ID 
+			where U.USERID = #{id}
+			
+			<if test="beginDate != null and beginDate != '' and endDate != null and endDate != ''">
+			and  u.create_date BETWEEN #{beginDate} AND #{endDate}
+		</if>
+		<if test="modifyStatus != null and modifyStatus != ''">
+			AND u.modifyStatus = 
+					<if test="dbName == 'oracle'">#{modifyStatus}</if>
+					<if test="dbName == 'mssql'">#{modifyStatus}</if>
+					<if test="dbName == 'mysql'">#{modifyStatus}</if>
+		</if>
+		
+		<if test="label != null and label != ''">
+			AND u.label LIKE 
+					<if test="dbName == 'oracle'">'%'||#{label}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{label}+'%'</if>
+					<if test="dbName == 'mysql'">CONCAT('%', #{label}, '%')</if>
+		</if>
+		
+		
+		<if test="url != null and url != ''">
+			AND p.url LIKE 
+					<if test="dbName == 'oracle'">'%'||#{url}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{url}+'%'</if>
+					<if test="dbName == 'mysql'">CONCAT('%', #{url}, '%')</if>
+		</if>
+		 order by U.PICID
+	</select>
+	
+	
+	<select id="findUserSelectLabelsByUserId" parameterType="UserLabel" resultType="UserLabel">
+		select u.*,P.PICNAME,P.URL from TPSB_ONELABEL_TWOCANDILABEL u 
+			left join tpsb_picture p on
+			U.PICID = P.ID 
+			where U.CREATE_BY =  #{id}
+			and  u.create_date BETWEEN #{beginDate} AND #{endDate}
+		
+		<if test="modifyStatus != null and modifyStatus != ''">
+			AND u.modifyStatus = 
+					<if test="dbName == 'oracle'">#{modifyStatus}</if>
+					<if test="dbName == 'mssql'">#{modifyStatus}</if>
+					<if test="dbName == 'mysql'">#{modifyStatus}</if>
+		</if>
+		
+		<if test="label != null and label != ''">
+			AND u.label LIKE 
+					<if test="dbName == 'oracle'">'%'||#{label}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{label}+'%'</if>
+					<if test="dbName == 'mysql'">CONCAT('%', #{label}, '%')</if>
+		</if>
+		
+		
+		<if test="url != null and url != ''">
+			AND p.url LIKE 
+					<if test="dbName == 'oracle'">'%'||#{url}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{url}+'%'</if>
+					<if test="dbName == 'mysql'">CONCAT('%', #{url}, '%')</if>
+		</if>
+		ORDER BY u.modifyStatus Desc,u.create_date DESC
+	</select>
+	
+	
+	
+	<select id="getUserTagByDate" resultType="UserTagResult" parameterType="string">
+		select A.USERID,a.writeNum,b.selectNum,a.nowdate from (
+select UI.USERID,count(*) as writeNum,TO_CHAR(ui.create_date,'yyyy-mm-dd') as nowdate from tpsb_user_label UI
+        where  UI.USERID = #{userId}
+        and ui.create_date <![CDATA[>= ]]> TO_date('${startDate}00:00:00','yyyy-mm-ddHH24:MI:SS') 
+          and ui.create_date <![CDATA[<=  ]]> TO_date('${endDate}23:59:59','yyyy-mm-ddHH24:MI:SS')
+        group by UI.USERID,TO_CHAR(ui.create_date,'yyyy-mm-dd')
+        ) a left join (
+select ot.CREATE_BY as userid,count(*) as selectNum,TO_CHAR(ot.create_date,'yyyy-mm-dd') as nowdate from TPSB_ONELABEL_TWOCANDILABEL ot 
+        where ot.CREATE_BY = #{userId}
+        and ot.create_date<![CDATA[>= ]]> TO_date('${startDate}00:00:00','yyyy-mm-ddHH24:MI:SS') 
+          and ot.create_date<![CDATA[<=  ]]>     TO_date('${endDate}23:59:59','yyyy-mm-ddHH24:MI:SS')
+        group by ot.CREATE_BY,TO_CHAR(ot.create_date,'yyyy-mm-dd')
+        ) b on a.userid = b.USERID and a.nowdate = b.nowdate
+	</select>
+	
+	<select id="getUserWriteSuccTagByDate" resultType="int" parameterType="string">
+		select count(*) as writeSuccNum from TPSB_USER_INTEGRAL i where I.USERID =#{userId} and I.INTEGRAL = 2 and to_char(i.create_date,'yyyy-mm-dd') = #{nowdate}
+	</select>
+
+	<select id="getUserSelectSuccTagByDate" resultType="int" parameterType="string">
+		select count(*) as selectSuccNum from TPSB_USER_INTEGRAL i where I.USERID =#{userId} and I.INTEGRAL = 1 and to_char(i.create_date,'yyyy-mm-dd') = #{nowdate}
+	</select>
+	
+	<select id="getSuccLabelByUserIdAndPicId" parameterType="UserLabel" resultType="string">
+	select i.label from TPSB_USER_INTEGRAL i where I.USERID = #{id} and I.PICID = #{picId}
+	</select>
+	
+	<select id="getSelectLabelByUserIdAndPicId" parameterType="UserLabel" resultType="string">
+	select O.LABEL from TPSB_ONELABEL_TWOCANDILABEL o where O.CREATE_BY = #{id} and O.PICID = #{picId}
+	</select>
+	
+	
+	<select id="findAllPicResult" resultType="UserLabel">
+		select P.ID,P.URL,P.PICNAME,l.id as labelid,L.LABEL_PARENT_ID,l.label 
+			from tpsb_picture p 
+				left join tpsb_pic_label l on L.PICID = P.ID
+			where P.TAGSTATUS = 1 and P.DEL_FLAG =0
+			order by p.id,L.LABEL_PARENT_ID	
+	</select>
+	
+	
+	
+	
+
+</mapper>

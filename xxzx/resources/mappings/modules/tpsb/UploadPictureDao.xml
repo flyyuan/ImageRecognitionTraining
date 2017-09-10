@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxzx.jeesite.modules.tpsb.dao.UploadPictureDao">
+
+	
+	<select id="findNoRecogPic" resultType="UploadPicture">
+		select * from tpsb_picture p where P.RECOGSTATUS = 0 and P.DEL_FLAG =0 and p.TAGSTATUS = 0
+	</select>
+	
+	<update id="RecogPicSucc" parameterType="string">
+		update tpsb_picture p set P.RECOGSTATUS = 1  where P.ID = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="UploadPicture">
+	insert into tpsb_picture
+	(ID,
+	 URL,
+	 PICNAME,
+	 CREATE_BY ,
+	 CREATE_DATE,
+ 	 UPDATE_BY,
+  	 UPDATE_DATE,
+ 	 REMARKS 
+	 
+	 )
+	values
+	(#{id},
+	#{url},
+	#{picName},
+	
+	#{createBy.id},
+	#{createDate},
+	#{updateBy.id},
+	#{updateDate},
+	#{remarks}
+	)
+	
+	
+	</insert>
+	
+	<insert id="insertAllPic">
+		insert all into tpsb_picture (
+			 ID,
+			 URL,
+			 PICNAME,
+			 CREATE_BY ,
+			 CREATE_DATE,
+		 	 UPDATE_BY,
+		  	 UPDATE_DATE,
+		 	 REMARKS 
+		)
+		<foreach collection="list" item="pic" open=" values " close="" separator=" into tpsb_picture(
+			 ID,
+			 URL,
+			 PICNAME,
+			 CREATE_BY ,
+			 CREATE_DATE,
+		 	 UPDATE_BY,
+		  	 UPDATE_DATE,
+		 	 REMARKS 
+		) values"  index="a">
+			(
+				#{pic.id},
+				#{pic.url},
+				#{pic.picName},
+				#{pic.createBy.id},
+				#{pic.createDate},
+				#{pic.updateBy.id},
+				#{pic.updateDate},
+				#{pic.remarks}
+			)
+		</foreach>
+		 SELECT 1 FROM DUAL
+	</insert>
+	
+
+
+
+</mapper>

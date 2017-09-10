@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxzx.jeesite.modules.tpsb.dao.UserCatDao">
+	
+	<insert id="insert" parameterType="UserCat">
+		insert into tpsb_user_cat(
+		      USERID,
+		      CATID,
+		      CREATE_BY,
+		      CREATE_DATE,
+		      UPDATE_BY,
+		      UPDATE_DATE,
+		      REMARKS,
+		      DEL_FLAG
+		) values (
+			#{createBy.id}, 
+			#{catId}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate}, 
+			#{remarks}, 
+			#{delFlag}
+		)
+	</insert>
+	
+	<insert id="insertAll" parameterType="UserCat">
+		insert all into tpsb_user_cat (
+		    USERID,
+		      CATID,
+		      CREATE_BY,
+		      CREATE_DATE,
+		      UPDATE_BY,
+		      UPDATE_DATE,
+		      REMARKS,
+		      DEL_FLAG
+		)
+		<foreach collection="catList" item="catId" open=" values " close="" separator=" into tpsb_user_cat(
+			 USERID,
+		      CATID,
+		      CREATE_BY,
+		      CREATE_DATE,
+		      UPDATE_BY,
+		      UPDATE_DATE,
+		      REMARKS,
+		      DEL_FLAG
+		) values"  index="a">
+			(
+				#{createBy.id}, 
+			#{catId}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate}, 
+			#{remarks}, 
+			#{delFlag}
+			)
+		</foreach>
+		 SELECT 1 FROM DUAL
+	</insert>
+	
+	
+	
+	
+	<select id="getUserCat" parameterType="string" resultType="UserCat">
+	select distinct c.id as catId ,c.name from tpsb_user_cat uc join tpsb_cat c on uc.catId = C.ID where uc.userid =#{userId} and uc.DEL_FLAG = 0
+	</select>
+	
+	<delete id="delete" parameterType="UserCat">
+		update tpsb_user_cat c set c.DEL_FLAG=1 where c.catid = #{catId} and c.userId = #{updateBy.id}
+	</delete>
+	
+	
+
+
+</mapper>

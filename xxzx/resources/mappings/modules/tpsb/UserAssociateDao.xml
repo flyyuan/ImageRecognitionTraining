@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxzx.jeesite.modules.tpsb.dao.UserAssociateDao">
+		
+		<!-- 获取当天更新过标签的userId -->
+		<select id="getNowUserId" resultType="string">
+			select distinct L.USERID  from tpsb_user_label l where (
+					select to_char(L.CREATE_DATE,'yy-mm-dd') 
+						from dual 
+					) 
+				= (
+					select to_char(sysdate-1,'yy-mm-dd')  
+						from dual
+					)			
+		</select>
+		
+		<!-- 获取所有填过标签的userid -->
+		<select id="getAllUserId" resultType="string">
+			select distinct U.USERID from tpsb_user_label u
+		</select>
+		
+		
+		<!-- 根据用户id获取所有标签 -->
+		<select id="getAllLabelByUserId" resultType="string" parameterType="string">
+			select distinct U.LABEL from tpsb_user_label u where U.USERID = #{userId}
+		</select>
+		
+		<delete id="delete">
+			delete TPSB_USER_ASSOCIATE a where a.userIdA = #{userIdA}
+		</delete>
+		
+		<insert id="insert" parameterType="string">
+			insert into TPSB_USER_ASSOCIATE values (#{userIdA},#{userIdB})
+		</insert>
+		
+		
+		
+		<!-- <select id="" resultType="string">
+			select distinct L.CREATE_BY  from TPSB_ONELABEL_TWOCANDILABEL l where (
+                    select to_char(L.CREATE_DATE,'yy-mm-dd') 
+                        from dual 
+                    ) 
+                = (
+                    select to_char(sysdate,'yy-mm-dd')  
+                        from dual
+                    )
+		</select>
+	
+		<select id="">
+			select distinct U.CREATE_BY from TPSB_ONELABEL_TWOCANDILABEL u
+		</select>
+		
+		<select id="">
+			select distinct U.LABEL from TPSB_ONELABEL_TWOCANDILABEL u where U.CREATE_BY = '1'
+		</select>
+
+ -->
+</mapper>

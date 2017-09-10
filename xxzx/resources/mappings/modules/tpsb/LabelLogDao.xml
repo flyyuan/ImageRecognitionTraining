@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxzx.jeesite.modules.tpsb.dao.LabelLogDao">
+
+
+
+<select id="findList" resultType="UserLabel">
+		select p.picName,p.url,l.label,u.id AS "createBy.id",
+            u.name AS "createBy.name",
+            c.name AS "createBy.company.name",
+            o.name AS "createBy.office.name" ,
+            L.CREATE_DATE
+            from tpsb_user_label l 
+			left JOIN sys_user u ON u.id = l.userid
+			left JOIN sys_office c ON c.id = l.userid
+			left JOIN sys_office o ON o.id = u.office_id
+			left join tpsb_picture p on P.ID = L.PICID
+		
+		WHERE  l.create_date BETWEEN #{beginDate} AND #{endDate}
+		
+		<if test="label != null and label != ''">
+			AND l.label LIKE 
+					<if test="dbName == 'oracle'">'%'||#{label}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{label}+'%'</if>
+					<if test="dbName == 'mysql'">CONCAT('%', #{label}, '%')</if>
+		</if>
+		<if test="createBy != null and createBy.id != null and createBy.id != ''">
+			AND l.create_by = #{createBy.id}
+		</if>
+		<if test="url != null and url != ''">
+			AND p.url LIKE 
+					<if test="dbName == 'oracle'">'%'||#{url}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{url}+'%'</if>
+					<if test="dbName == 'mysql'">CONCAT('%', #{url}, '%')</if>
+		</if>
+		ORDER BY l.create_date DESC
+		</select>
+
+		
+
+
+</mapper>

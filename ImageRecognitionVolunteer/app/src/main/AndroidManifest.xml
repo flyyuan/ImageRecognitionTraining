@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:app="http://schemas.android.com/apk/res-auto"
+          package="cn.thxy.imagerecognition"
+          app:theme="@android:style/Theme.Material.Light.DarkActionBar">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/cover"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material.Light.DarkActionBar">
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/app_name"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UserInfoActivity"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".HobbyActivity"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".IntegralActivity"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".LoginActivity"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".RegisterActivity"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".modifyPwdActivity"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ModifyLabelsActivity"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".UserHobbyActivity"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar"/>
+    </application>
+
+</manifest>

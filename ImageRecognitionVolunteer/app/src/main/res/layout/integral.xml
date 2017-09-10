@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/integraltoolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="@string/integral_toolbar_title"
+                    app:titleMarginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+        </android.support.design.widget.AppBarLayout>
+        <android.support.v7.widget.CardView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="#70b5ed"
+                    android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+                                <cn.thxy.imagerecognition.Utils.CircleImageView
+                                    android:id="@+id/Circleview"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:layout_alignParentLeft="true"
+                                    android:src="@drawable/image"/>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_margin="10dp"
+                                    android:layout_toEndOf="@+id/Circleview"
+                                    android:orientation="vertical"
+                                    >
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="10dp"
+                                            android:orientation="horizontal">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textSize="20sp"
+                                                    android:id="@+id/integral_uesrname"
+                                                    android:textColor="@color/background_gray"
+                                                    android:text="@string/integal_tv_username"/>
+
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="18dp"
+                                            android:orientation="horizontal">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textSize="17sp"
+                                                    android:textColor="@color/background_gray"
+                                                    android:text="@string/integal_tv_allintegral"
+                                                    />
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textSize="17sp"
+                                                    android:textColor="@color/background_gray"
+                                                    android:id="@+id/integral_sum"
+                                                    android:text="0"/>
+                                        </LinearLayout>
+
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerInParent="true"
+
+                                    android:id="@+id/ll_turnData">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:textColor="@color/background_gray"
+                                            android:text="@string/integral_turndate"/>
+                                        <ImageView
+                                            android:layout_width="17dp"
+                                            android:layout_height="18dp"
+                                            android:layout_marginStart="2dp"
+                                            android:layout_marginEnd="2dp"
+                                            android:src="@drawable/right"/>
+                                </LinearLayout>
+                        </RelativeLayout>
+
+                </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_gray"
+            android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/ll_tip"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/gray">
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/gray"
+                            android:textSize="20sp"
+                            android:text="@string/integral_noneshow"/>
+
+                </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:id="@+id/ll_recyclerview">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/gray"
+                    android:textSize="20sp"
+                    android:text="@string/integral_show"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray">
+
+                </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/re_integral">
+                </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
+       </LinearLayout>
+</LinearLayout>

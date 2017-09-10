@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fast Manager</string>
+    <string name="title_state">volunteer management</string>
+    <string name="title_picmanage">picture management</string>
+    <string name="title_me">me</string>
+    <string name="enter_label">Enter label</string>
+    <string name="get_all_label">enter*,get all success label</string>
+    <string name="get_label">get label</string>
+    <string name="export_label">export label</string>
+    <string name="account">account</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
+    <string name="remember_password">remember password</string>
+    <string name="upload_pictures">upload pictures</string>
+    <string name="view_user_history_labels">view volunteer\'s history labels</string>
+    <string name="search_and_export_picture_labels">export picture labels</string>
+    <string name="task_completion">task completion</string>
+    <string name="name">name:</string>
+    <string name="login_name">login name:</string>
+    <string name="change_password">change password</string>
+    <string name="setup_language">setup language</string>
+    <string name="exit">exit</string>
+    <string name="tip_change_pw">change password after，will exit!</string>
+    <string name="original_password">original password</string>
+    <string name="new_password">new password</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="confirm">confirm</string>
+    <string name="Fill_in_first">fill in first</string>
+    <string name="First_choice">first choice</string>
+    <string name="No_fill_in">no fill in</string>
+    <string name="forbid_choice">forbid choice</string>
+    <string name="forbid_choice_fill">forbid choice and fill</string>
+    <string name="normal">normal</string>
+    <string name="choice_accuracy">choice accuracy:</string>
+    <string name="fill_accuracy">fill accuracy:</string>
+    <string name="not_new_record">not new record:</string>
+    <string name="delete">delete</string>
+</resources>

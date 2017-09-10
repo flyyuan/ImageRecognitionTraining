@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">快标注</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="dialogTittle">自定义标签</string>
+    <string name="dialogCancel">取消</string>
+    <string name="dialogSure">确定</string>
+    <string name="action_settings">设置</string>
+    <string name="action_language">语言</string>
+    <string name="add">+</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="cate_other">其他</string>
+
+    <string name="nav_item_data">个人资料</string>
+    <string name="nav_item_modify">修改标签</string>
+    <string name="nav_item_integral">积分</string>
+    <string name="nav_item_habit">兴趣</string>
+    <string name="nav_item_feedback">反馈</string>
+    <string name="nav_item_quit">退出</string>
+
+    <string name="loading">加载中</string>
+
+
+    <string name="welcome_text">快标注</string>
+
+    <string name="userinfo_toolbar_title">个人信息</string>
+    <string name="userinfo_tv_loginanme">登录名：</string>
+    <string name="userinfo_cardview_title">------------个人信息-------------</string>
+    <string name="userinfo_tv_name">姓名</string>
+    <string name="userinfo_tv_mobile">手机</string>
+    <string name="userinfo_tv_email">邮箱</string>
+    <string name="userinfo_tv_modifypwd">修改密码</string>
+
+
+    <string name="userhobby_toolbar_title">用户兴趣</string>
+    <string name="userhobby_tv_changehobby">修改偏好</string>
+    <string name="userhobby_cardview_title">------当前用户的兴趣------</string>
+
+    <string name="register_title">快标注</string>
+    <string name="register_tv_mobile">手机号码：</string>
+    <string name="register_tv_email">邮箱：</string>
+    <string name="register_tv_loginname">登陆名：</string>
+    <string name="register_tv_name">真实姓名：</string>
+    <string name="register_tv_pwd">密码：</string>
+    <string name="register_tv_comfirmpwd">确定密码：</string>
+    <string name="register_btn_re">注册</string>
+    <string name="register_tv_turnlogin">已有账号，点击登陆</string>
+
+    <string name="nav_header_name">用户名：</string>
+    <string name="nav_header_tv_name">无</string>
+
+    <string name="modifypwd_toolbar_title">修改密码</string>
+    <string name="modifypwd_tv_tip">Tip:修改密码后，会退出登录哦！</string>
+    <string name="modifypwd_et_pwd">原密码</string>
+    <string name="modifypwd_et_newpwd">新密码</string>
+    <string name="modifypwd_et_comnewpwd">确定密码</string>
+    <string name="modifypwd_btn_submit">确定</string>
+
+
+    <string name="modifylabel_toolbar_title">修改标签</string>
+    <string name="modifylabel_tv_tip">Tip:</string>
+    <string name="modifylabel_tv_tiptext">点击标签，修改内容</string>
+
+    <string name="login_title">快标注</string>
+    <string name="login_et_loginname">账号</string>
+    <string name="login_et_pwd">密码</string>
+    <string name="login_getpwd">忘记密码？</string>
+    <string name="login_btn_login">登陆</string>
+    <string name="login_tv_register">注册</string>
+
+    <string name="item_userhobby_tv_title">兴趣偏好</string>
+
+    <string name="item_modifylabel_tv_label">标签：</string>
+    <string name="item_modifylabel_tv_labelinfo">标签信息</string>
+    <string name="item_modifylabel_tv_modifytime">标注时间：</string>
+    <string name="item_modifylabel_btn_delete">删除</string>
+
+    <string name="item_integrel_tv_label">标注标签</string>
+    <string name="item_integrel_tv_time">标注时间：</string>
+
+    <string name="item_hobby_tv">偏好</string>
+
+    <string name="integral_toolbar_title">当前积分</string>
+    <string name="integal_tv_username">志愿者01</string>
+    <string name="integal_tv_allintegral">总积分：</string>
+    <string name="integral_turndate">修改资料</string>
+    <string name="integral_noneshow">当前无积分记录</string>
+    <string name="integral_show">当前积分记录</string>
+
+    <string name="hobby_tv_title1">选择一些你喜欢的标签</string>
+    <string name="hobby_tv_title2">我们会推送相关的图片哟</string>
+    <string name="hobby_btn_submit">保存</string>
+
+    <string name="content_tv_show">请选择分类标签</string>
+    <string name="content_tv_show2">请输入图片标签信息</string>
+    <string name="content_tv_label1">标签一：</string>
+    <string name="content_tv_label2">标签二：</string>
+    <string name="content_tv_show3">能不能将下面标签再细化呢，如：狗-->金毛</string>
+    <string name="content_et_hint">请输入细化的标签,没有可不填</string>
+    <string name="content_tv_showerror">有标签与该图没有关联,请点击这里</string>
+    <string name="content_tv_changemode">切换标注模式</string>
+
+    <string name="app_bar_clear">清除</string>
+    <string name="app_bar_submit">提交</string>
+    <string name="app_bar_toolbar_title">标注图片</string>
+
+
+</resources>

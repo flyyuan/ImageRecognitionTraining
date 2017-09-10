@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxzx.jeesite.modules.tpsb.dao.TpsbCatDao">
+    
+	<sql id="tpsbCatColumns">
+		a.id AS "id",
+		a.parent_id AS "parentId",
+		a.name AS "name",
+		a.status AS "status",
+		a.sort_order AS "sortOrder",
+		a.is_parent AS "isParent",
+		a.created AS "created",
+		a.updated AS "updated"
+	</sql>
+	
+	<sql id="tpsbCatJoins">
+	</sql>
+    
+	<select id="get" resultType="TpsbCat">
+		SELECT 
+			<include refid="tpsbCatColumns"/>
+		FROM tpsb_cat a
+		<include refid="tpsbCatJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TpsbCat">
+		SELECT 
+			<include refid="tpsbCatColumns"/>
+		FROM tpsb_cat a
+		<include refid="tpsbCatJoins"/>
+		<where>
+			
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TpsbCat">
+		SELECT 
+			<include refid="tpsbCatColumns"/>
+		FROM tpsb_cat a
+		<include refid="tpsbCatJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO tpsb_cat(
+			id,
+			parent_id,
+			name,
+			status,
+			sort_order,
+			is_parent,
+			created,
+			updated
+		) VALUES (
+			#{id},
+			#{parentId},
+			#{name},
+			#{status},
+			#{sortOrder},
+			#{isParent},
+			#{created},
+			#{updated}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE tpsb_cat SET 	
+			parent_id = #{parentId},
+			name = #{name},
+			status = #{status},
+			sort_order = #{sortOrder},
+			is_parent = #{isParent},
+			created = #{created},
+			updated = #{updated}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM tpsb_cat
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

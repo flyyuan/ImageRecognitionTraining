@@ -1,0 +1,122 @@
+<resources>
+    <string name="app_name">FAST LABEL</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="dialogTittle">Custom Label</string>
+    <string name="dialogCancel">cancel</string>
+    <string name="dialogSure">ok</string>
+    <string name="action_settings">setting</string>
+    <string name="action_language">language</string>
+    <string name="add">+</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="cate_other">other</string>
+
+    <string name="nav_item_data">UserData</string>
+    <string name="nav_item_modify">ModifyLabel</string>
+    <string name="nav_item_integral">Integral</string>
+    <string name="nav_item_habit">User Hobby</string>
+    <string name="nav_item_feedback">FeedBack</string>
+    <string name="nav_item_quit">Quit</string>
+
+    <string name="loading">Loading</string>
+
+
+    <string name="welcome_text">FAST LABEL</string>
+
+    <string name="userinfo_toolbar_title">UserData</string>
+    <string name="userinfo_tv_loginanme">LoginName：</string>
+    <string name="userinfo_cardview_title">------------UserData-------------</string>
+    <string name="userinfo_tv_name">Name</string>
+    <string name="userinfo_tv_mobile">Mobile</string>
+    <string name="userinfo_tv_email">Email</string>
+    <string name="userinfo_tv_modifypwd">Modify Password</string>
+
+
+    <string name="userhobby_toolbar_title">User Hobby</string>
+    <string name="userhobby_tv_changehobby">Modify Hobby</string>
+    <string name="userhobby_cardview_title">------My Hobby List------</string>
+
+    <string name="register_title">FAST LABEL</string>
+    <string name="register_tv_mobile">MobilePhone：</string>
+    <string name="register_tv_email">Email：</string>
+    <string name="register_tv_loginname">LoginName：</string>
+    <string name="register_tv_name">RealName：</string>
+    <string name="register_tv_pwd">Password：</string>
+    <string name="register_tv_comfirmpwd">ConfirmPassword：</string>
+    <string name="register_btn_re">Register</string>
+    <string name="register_tv_turnlogin">Has a account,onclick to login</string>
+
+    <string name="nav_header_name">LoginName：</string>
+    <string name="nav_header_tv_name">None</string>
+
+    <string name="modifypwd_toolbar_title">ModifyPassword</string>
+    <string name="modifypwd_tv_tip">Tip:Login out after modify password！</string>
+    <string name="modifypwd_et_pwd">old password</string>
+    <string name="modifypwd_et_newpwd">new password</string>
+    <string name="modifypwd_et_comnewpwd">confirm password</string>
+    <string name="modifypwd_btn_submit">Submit</string>
+
+
+    <string name="modifylabel_toolbar_title">Modify Label</string>
+    <string name="modifylabel_tv_tip">Tip:</string>
+    <string name="modifylabel_tv_tiptext">Onclick the label ，change the label</string>
+
+    <string name="login_title">FAST LABEL</string>
+    <string name="login_et_loginname">LOGINNAME</string>
+    <string name="login_et_pwd">PASSWORD</string>
+    <string name="login_getpwd">Forget Password？</string>
+    <string name="login_btn_login">Login</string>
+    <string name="login_tv_register">Register</string>
+
+    <string name="item_userhobby_tv_title">Hobby</string>
+
+    <string name="item_modifylabel_tv_label">Label：</string>
+    <string name="item_modifylabel_tv_labelinfo">LabelInfo</string>
+    <string name="item_modifylabel_tv_modifytime">Time：</string>
+    <string name="item_modifylabel_btn_delete">DEL</string>
+
+    <string name="item_integrel_tv_label">Label</string>
+    <string name="item_integrel_tv_time">Time：</string>
+
+    <string name="item_hobby_tv">Hobby</string>
+
+    <string name="integral_toolbar_title">The Current Integral</string>
+    <string name="integal_tv_username">Volunteer01</string>
+    <string name="integal_tv_allintegral">Total Integral：</string>
+    <string name="integral_turndate">Modify Data</string>
+    <string name="integral_noneshow">None Integral Record</string>
+    <string name="integral_show">Current Integral Record</string>
+
+    <string name="hobby_tv_title1">Choose some of your favorite tags</string>
+    <string name="hobby_tv_title2">We will push the relevant picture </string>
+    <string name="hobby_btn_submit">Save</string>
+
+    <string name="content_tv_show">please select a category label</string>
+    <string name="content_tv_show2">please input the label</string>
+    <string name="content_tv_label1">label1：</string>
+    <string name="content_tv_label2">label2：</string>
+    <string name="content_tv_show3">can you refine the label below?</string>
+    <string name="content_et_hint">enter the label if it is not filled</string>
+    <string name="content_tv_showerror">has error label? please click here</string>
+    <string name="content_tv_changemode">switch mode</string>
+
+    <string name="app_bar_clear">Clear</string>
+    <string name="app_bar_submit">Submit</string>
+    <string name="app_bar_toolbar_title">Mark The Picture</string>
+
+    <string name="toast_feedback">please call to tianruan team</string>
+
+
+    <string name="toast_mode1">mode 1</string>
+    <string name="toast_mode2">mode 2</string>
+    <string name="main_error">onclick the error labels </string>
+    <string name="main_iserror">has the error labels ,onclick there</string>
+    <string name="toast_labelinfo">label is </string>
+    <string name="toast_quit">Press again to exit the program</string>
+    <string name="toast_labelsucess">Success</string>
+    <string name="toast_labelfail">fail,wait a minute</string>
+    <string name="toast_labelerror">If you do not have permission, please contact the administrator</string>
+
+    <string name="dialog_title">Change Language</string>
+</resources>
